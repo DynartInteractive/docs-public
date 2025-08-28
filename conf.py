@@ -7,9 +7,9 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Dynart Documentation'
-copyright = '2024, Dynart'
+copyright = '2025, Dynart'
 author = 'Dynart'
-release = '1.0.0-1'
+release = '0.0.0-2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -26,3 +26,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+html_css_files = ['custom.css']
+html_logo = '_static/dynart-logo.svg'
+
+pygments_style = 'dracula'
