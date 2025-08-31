@@ -272,6 +272,9 @@ html.writer-html5 .rst-content table.docutils th {
     .wy-grid-for-nav {
         margin-left: calc(((100vw - 1100px) / 2));
     }
+    .wy-nav-content {
+        min-height: 100vh;
+    }
     .wy-nav-content-wrap {
         background: none;
     }
