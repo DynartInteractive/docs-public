@@ -5,3 +5,5 @@
 :caption: Contents
 
 coolfox-engine/intro
+legal/terms-of-use
+legal/privacy-policy
