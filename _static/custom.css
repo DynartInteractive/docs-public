@@ -1,36 +1,56 @@
-body { color: #ccc;}
+:root {
+    --theme-text-color: #adadad;
 
-hr { border-top: 1px solid #888 }
+    --theme-link-color: #a9f2ff;
+    --theme-link-text-decoration: none;
+    --theme-link-hover-text-decoration: underline;
+    --theme-link-hover-color: #a9f2ff;
+    --theme-link-visited-color: #a9f2ff;
+    --theme-link-visited-text-decoration: none;
 
-a { color: #a9f2ff }
-a:hover { text-decoration: underline; color: #a9f2ff }
-a:visited { color: #a9f2ff }
+    --theme-highlighted-bgcolor: rgba(24, 73, 148, 0.5);
+    --theme-highlighted-color: #fff;
+
+    --theme-hr-border-top: #888 solid 1px;
+
+    --theme-nav-bgcolor: #242121;
+
+    --theme-content-bgcolor: #2d2a2a;
+}
+
+body { color: var(--theme-text-color); background: var(--theme-nav-bgcolor) }
+
+hr { border-top: var(--theme-hr-border-top) }
+
+a { color: var(--theme-link-color); text-decoration: var(--theme-link-text-decoration); }
+a:hover { color: var(--theme-link-hover-color); text-decoration: var(--theme-link-hover-text-decoration); }
+a:visited { color: var(--theme-link-visited-color); text-decoration: var(--theme-link-visited-text-decoration); }
 
 .rst-content .highlighted {
-    background: rgba(24, 73, 148, 0.5);
-    color: #fff;
+    background: var(--theme-highlighted-bgcolor);
+    color: var(--theme-highlighted-color);
     box-shadow: none;
 }
 
-/*
-footer { font-size: 0; }
-footer div[role=contentinfo] { font-size: 1em; }
-*/
-
-.wy-side-nav-search { background-color: #343131; }
+.wy-side-nav-search { background-color: var(--theme-nav-bgcolor); }
 .wy-side-nav-search a { font-size: 1px; color: rgba(0, 0, 0, 0); }
 .wy-side-nav-search div[role=search] { padding-top: 1em; }
 
-.wy-nav-top { background-color: #343131; }
+.wy-nav-top { background-color: var(--theme-nav-bgcolor); }
 .wy-nav-top a { color: #fff; }
 
-.wy-nav-content, .wy-nav-content-wrap { background-color: #3D3A3A; }
+.wy-nav-side { background-color: var(--theme-nav-bgcolor); }
 
-.rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
+.wy-nav-content, .wy-nav-content-wrap { background-color: var(--theme-content-bgcolor); }
+
+.rst-content tt.literal,
+.rst-content code.literal {
     color: #fff;
     white-space: normal;
 }
-code, .rst-content tt, .rst-content code {
+code,
+.rst-content tt,
+.rst-content code {
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(0, 0, 0, 0);
 }
@@ -49,32 +69,12 @@ html.writer-html5 .rst-content table.docutils th {
     color: #fff;
 }
 
-/*
-.wy-menu-vertical li.toctree-l1.current>a {
-    border: none;
-}
-.wy-menu-vertical li.toctree-l2.current>a {
-    background: rgba(255, 255, 255, 0.1);
-}
-.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
-    background: rgba(255, 255, 255, 0.1);
-}
-.wy-menu-vertical li.on a,
-.wy-menu-vertical li.current > a {
-    color: #fff;
-    background: none;
-}
-.wy-menu-vertical li.current {
-     background: none;
-}
-*/
-
 .wy-table-odd td,
 .wy-table-striped tr:nth-child(2n-1) td,
 .rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td {
     background-color: #333;
 }
- 
+
 .wy-alert.wy-alert-info,
 .rst-content .note,
 .rst-content .wy-alert-info.attention,
@@ -91,32 +91,32 @@ html.writer-html5 .rst-content table.docutils th {
     background: rgba(24, 73, 148, 0.2);
 }
 .wy-alert.wy-alert-info .wy-alert-title,
- .rst-content .note .wy-alert-title,
- .rst-content .wy-alert-info.attention .wy-alert-title,
- .rst-content .wy-alert-info.caution .wy-alert-title,
- .rst-content .wy-alert-info.danger .wy-alert-title,
- .rst-content .wy-alert-info.error .wy-alert-title,
- .rst-content .wy-alert-info.hint .wy-alert-title,
- .rst-content .wy-alert-info.important .wy-alert-title,
- .rst-content .wy-alert-info.tip .wy-alert-title,
- .rst-content .wy-alert-info.warning .wy-alert-title,
- .rst-content .seealso .wy-alert-title,
- .rst-content .wy-alert-info.admonition-todo .wy-alert-title,
- .rst-content .wy-alert-info.admonition .wy-alert-title,
- .wy-alert.wy-alert-info .rst-content .admonition-title,
- .rst-content .wy-alert.wy-alert-info .admonition-title,
- .rst-content .note .admonition-title,
- .rst-content .wy-alert-info.attention .admonition-title,
- .rst-content .wy-alert-info.caution .admonition-title,
- .rst-content .wy-alert-info.danger .admonition-title,
- .rst-content .wy-alert-info.error .admonition-title,
- .rst-content .wy-alert-info.hint .admonition-title,
- .rst-content .wy-alert-info.important .admonition-title,
- .rst-content .wy-alert-info.tip .admonition-title,
- .rst-content .wy-alert-info.warning .admonition-title,
- .rst-content .seealso .admonition-title,
- .rst-content .wy-alert-info.admonition-todo .admonition-title,
- .rst-content .wy-alert-info.admonition .admonition-title {
+.rst-content .note .wy-alert-title,
+.rst-content .wy-alert-info.attention .wy-alert-title,
+.rst-content .wy-alert-info.caution .wy-alert-title,
+.rst-content .wy-alert-info.danger .wy-alert-title,
+.rst-content .wy-alert-info.error .wy-alert-title,
+.rst-content .wy-alert-info.hint .wy-alert-title,
+.rst-content .wy-alert-info.important .wy-alert-title,
+.rst-content .wy-alert-info.tip .wy-alert-title,
+.rst-content .wy-alert-info.warning .wy-alert-title,
+.rst-content .seealso .wy-alert-title,
+.rst-content .wy-alert-info.admonition-todo .wy-alert-title,
+.rst-content .wy-alert-info.admonition .wy-alert-title,
+.wy-alert.wy-alert-info .rst-content .admonition-title,
+.rst-content .wy-alert.wy-alert-info .admonition-title,
+.rst-content .note .admonition-title,
+.rst-content .wy-alert-info.attention .admonition-title,
+.rst-content .wy-alert-info.caution .admonition-title,
+.rst-content .wy-alert-info.danger .admonition-title,
+.rst-content .wy-alert-info.error .admonition-title,
+.rst-content .wy-alert-info.hint .admonition-title,
+.rst-content .wy-alert-info.important .admonition-title,
+.rst-content .wy-alert-info.tip .admonition-title,
+.rst-content .wy-alert-info.warning .admonition-title,
+.rst-content .seealso .admonition-title,
+.rst-content .wy-alert-info.admonition-todo .admonition-title,
+.rst-content .wy-alert-info.admonition .admonition-title {
     background: rgba(24, 73, 148, 0.2);
     border-bottom: #184994;
 }
@@ -279,7 +279,7 @@ html.writer-html5 .rst-content table.docutils th {
         background: none;
     }
     .wy-body-for-nav {
-        background-color: #343131;
+        background-color: var(--theme-nav-bgcolor);
         background-image: url(bg.png);
         background-size: cover;
     }
