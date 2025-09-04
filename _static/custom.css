@@ -280,7 +280,5 @@ html.writer-html5 .rst-content table.docutils th {
     }
     .wy-body-for-nav {
         background-color: var(--theme-nav-bgcolor);
-        background-image: url(bg.png);
-        background-size: cover;
     }
 }
