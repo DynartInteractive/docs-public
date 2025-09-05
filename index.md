@@ -4,6 +4,5 @@
 :maxdepth: 1
 :caption: Contents
 
-coolfox-engine/intro
-legal/terms-of-use
-legal/privacy-policy
+coolfox-engine/index
+legal/index
