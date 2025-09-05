@@ -1,6 +1,6 @@
 # Dynart Documentation
 
-The source of the [Dynart Internal Documentation](https://docs.dynart.net)
+The source of the [Dynart Documentation](https://docs.dynart.net)
 
 ## Install requirements
 
