@@ -16,6 +16,17 @@ release = '0.0.0-2'
 
 extensions = ['myst_parser']
 
+myst_enable_extensions = [
+    "attrs_inline",   # IDs after inline content:  ## Title {#id}
+    "attrs_block",    # IDs before a block:       {#id}\n## Title
+    "linkify",        # https://xyz.com to links
+]
+
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "myst",
+}
+
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
