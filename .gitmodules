@@ -1,0 +1,3 @@
+[submodule "coolfox-engine"]
+	path = coolfox-engine
+	url = https://github.com/DynartInteractive/docs-coolfox-engine.git
