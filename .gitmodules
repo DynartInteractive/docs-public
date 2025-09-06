@@ -1,3 +1,6 @@
 [submodule "coolfox-engine"]
 	path = coolfox-engine
 	url = https://github.com/DynartInteractive/docs-coolfox-engine.git
+[submodule "legal"]
+	path = legal
+	url = https://github.com/DynartInteractive/docs-legal.git
