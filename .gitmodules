@@ -1,2 +1,4 @@
 [submodule "coolfox-engine"]
 	branch = main
+[submodule "legal"]
+	branch = main
