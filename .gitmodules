@@ -1,4 +1,9 @@
 [submodule "coolfox-engine"]
-	branch = main
+    path = coolfox-engine
+    url = https://github.com/DynartInteractive/docs-coolfox-engine
+    branch = main
+
 [submodule "legal"]
-	branch = main
+    path = legal
+    url = https://github.com/DynartInteractive/docs-legal
+    branch = main
