@@ -20,5 +20,5 @@ Go to the root folder of cloned repository and run the following command:
 ```bash
 sphinx-build -M html . _build
 ```
-
+ 
 This will create the documentation in HTML format in the `_build/html` folder.
