@@ -13,6 +13,21 @@ Read the Docs theme.
 sudo apt install python3 python3-sphinx python3-myst-parser python3-sphinx-rtd-theme
 ```
 
+### Windows
+
+```
+pip install sphinx myst-parser sphinx-rtd-theme linkify-it-py
+```
+
+Search for your sphinx package:
+
+```
+pip show sphinx
+```
+
+You will need the `Scripts` at the end, add to your PATH in with the *Edit the system environment variables*:
+`c:\Users\gopher\AppData\Roaming\Python\Python313\Scripts\`, after this if you restart your terminal you should be able to run `sphinx-build`.
+
 ## Build
 
 Go to the root folder of cloned repository and run the following command:
