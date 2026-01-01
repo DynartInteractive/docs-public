@@ -5,4 +5,5 @@
 :caption: Contents
 
 coolfox-engine/index
+dos-game-engine/index
 legal/index
