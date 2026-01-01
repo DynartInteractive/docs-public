@@ -7,3 +7,6 @@
     path = legal
     url = https://github.com/DynartInteractive/docs-legal
     branch = main
+[submodule "dos-game-engine"]
+	path = dos-game-engine
+	url = git@github.com:DynartInteractive/docs-dos-game-engine.git
