@@ -36,6 +36,14 @@ git clone git@github.com:DynartInteractive/docs-public.git
 git submodule update --init --recursive
 ```
 
+## Update the submodules
+
+Getting latest documentation for every submodule:
+
+```bash
+git submodule update --recursive --remote
+```
+
 ## Build
 
 Go to the root folder of cloned repository and run the following command:
@@ -45,3 +53,5 @@ sphinx-build -M html . _build
 ```
  
 This will create the documentation in HTML format in the `_build/html` folder, open the `index.html` for the main page.
+
+
