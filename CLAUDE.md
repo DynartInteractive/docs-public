@@ -45,8 +45,8 @@ After installing on Windows, ensure the Python Scripts directory (e.g., `c:\User
 The repository follows a Git submodules architecture where individual documentation sets are maintained in separate repositories:
 
 - **Root**: Main documentation site configuration ([conf.py](conf.py)) and index
-- **coolfox-engine/**: CoolFox Engine documentation (LibGDX-based retro platformer engine)
-  - Source: https://github.com/DynartInteractive/docs-coolfox-engine
+- **lisa-engine/**: Lisa Engine documentation (LibGDX-based retro platformer engine, base of NeonSignal and CoolFox)
+  - Source: https://github.com/DynartInteractive/docs-lisa-engine
 - **dos-game-engine/**: DOS Game Engine documentation (Pascal/Turbo Pascal framework)
   - Source: git@github.com:DynartInteractive/docs-dos-game-engine.git
 - **legal/**: Legal documents (privacy policy, terms of use, house rules)
