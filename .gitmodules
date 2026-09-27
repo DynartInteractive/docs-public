@@ -1,11 +1,12 @@
 [submodule "legal"]
-    path = legal
-	url = git@github.com:DynartInteractive/docs-legal.git
-    branch = main
+	path = legal
+	url = https://github.com/DynartInteractive/docs-legal.git
+	branch = main
 [submodule "dos-game-engine"]
 	path = dos-game-engine
-	url = git@github.com:DynartInteractive/docs-dos-game-engine.git
+	url = https://github.com/DynartInteractive/docs-dos-game-engine.git
+	branch = main
 [submodule "lisa-engine"]
 	path = lisa-engine
-	url = git@github.com:DynartInteractive/docs-lisa-engine.git
+	url = https://github.com/DynartInteractive/docs-lisa-engine.git
 	branch = main
