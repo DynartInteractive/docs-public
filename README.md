@@ -1,57 +1,74 @@
 # Dynart Documentation
 
-The source of the [Dynart Documentation](https://docs.dynart.net)
+The source of the [Dynart Documentation](https://docs.dynart.net): Markdown, in one repository per
+project, gathered here as git submodules.
 
-## Install requirements
+The site is built by [dpress](https://github.com/goph-R/dynart-dpress) and its
+[Docs plugin](https://github.com/goph-R/dynart-dpress-docs), not by Sphinx any more. Nothing is
+built in this repository: the server clones it, and turns the Markdown into pages.
 
-Install Python 3, the Sphinx library, the myst_parser for the .md file support, and the
-Read the Docs theme.
+## How a change gets published
 
-### Debian
+1. Change the Markdown - in the submodule's own repository, for anything below `legal/`,
+   `dos-game-engine/` or `lisa-engine/` - and push it.
+2. **If you changed a submodule, commit its new commit here too**, and push this repository. The
+   server checks out what this repository records, so a submodule's push alone is not published:
 
-```bash
-sudo apt install python3 python3-sphinx python3-myst-parser python3-sphinx-rtd-theme
-```
+   ```bash
+   git add dos-game-engine
+   git commit -m "dos-game-engine: what changed"
+   git push
+   ```
 
-### Windows
+3. A push to this repository starts the Jenkins job, which has the server pull it and rebuild -
+   `dpress docs:build` on the server. A red job means the pull or the build failed; its console
+   says which, and the site keeps what it had.
 
-```batch
-pip install sphinx myst-parser sphinx-rtd-theme linkify-it-py
-```
-
-Search for your sphinx package:
-
-```batch
-pip show sphinx
-```
-
-You will need the `Scripts` at the end, add to your PATH in with the *Edit the system environment variables*:
-`c:\Users\gopher\AppData\Roaming\Python\Python313\Scripts\`, after this if you restart your terminal you should be able to run `sphinx-build`.
-
-
-## Clone the repository with submodules
+## Clone it
 
 ```bash
-git clone git@github.com:DynartInteractive/docs-public.git
-git submodule update --init --recursive
+git clone --recurse-submodules https://github.com/DynartInteractive/docs-public.git
+```
+
+The submodules are listed with `https://` addresses so that a machine with no GitHub key - the
+server - can clone them. To keep **pushing** over SSH from your own machine, tell git once:
+
+```bash
+git config --global url."git@github.com:".pushInsteadOf "https://github.com/"
 ```
 
 ## Update the submodules
 
-Getting latest documentation for every submodule:
+To the commits this repository records:
 
 ```bash
-git submodule update --recursive --remote
+git pull --recurse-submodules
 ```
 
-## Build
-
-Go to the root folder of cloned repository and run the following command:
+To the newest commit of each submodule's `main` - then commit the result here, as in step 2:
 
 ```bash
-sphinx-build -M html . _build
+git submodule update --remote
 ```
- 
-This will create the documentation in HTML format in the `_build/html` folder, open the `index.html` for the main page.
 
+## Writing
 
+Plain Markdown, plus the parts of [MyST](https://myst-parser.readthedocs.io/) the site understands:
+
+| Syntax | What it does |
+|---|---|
+| ```` ```{toctree} ```` with `:maxdepth:`, `:caption:`, `:hidden:` | the tree: a page appears on the site only if a `toctree` reaches it, starting from `index.md` |
+| ```` ```{note} ````, `tip`, `hint`, `important`, `seealso`, `attention`, `warning`, `caution`, `danger`, `error`, `admonition` | a callout |
+| `{#some-id}` on the line before a heading, `## Title {#some-id}`, `{.a-class}` | an id or a class on that heading |
+| ``{ref}`some-id` `` | a link to the heading with that id, its title as the text |
+| `[text](../ENGINE/BASEGAME.md)` | a link to that page |
+| ```` ```pascal ```` and other languages | a highlighted code block; a fence with no language is a plain box |
+
+Every heading gets the id Sphinx gave it - `## VGA Graphics` is `#vga-graphics` - so the links
+people saved from the Sphinx site still land. A construct the build does not know is shown as it
+is and listed as a problem in the build's report.
+
+## Previewing locally
+
+Any dpress site with the Docs plugin can build from a local clone: point **Source folder** under
+Settings > Documentation at it, and press **Build now**.

@@ -4,84 +4,52 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Dynart Documentation repository, a Sphinx-based documentation site that aggregates documentation from multiple projects via Git submodules. The built site is published at https://docs.dynart.net.
-
-## Build System
-
-This project uses Sphinx with MyST parser for Markdown support and the Read the Docs theme.
-
-### Build Commands
-
-Build the complete documentation:
-```bash
-sphinx-build -M html . _build
-```
-
-On Windows, you can also use the batch file:
-```bash
-make.bat html
-```
-
-The generated HTML output will be in `_build/html/`.
-
-### Dependencies
-
-Install required Python packages:
-
-**Debian/Ubuntu:**
-```bash
-sudo apt install python3 python3-sphinx python3-myst-parser python3-sphinx-rtd-theme
-```
-
-**Windows:**
-```bash
-pip install sphinx myst-parser sphinx-rtd-theme linkify-it-py
-```
-
-After installing on Windows, ensure the Python Scripts directory (e.g., `c:\Users\gopher\AppData\Roaming\Python\Python313\Scripts\`) is in your PATH to access `sphinx-build`.
+The source of the Dynart Documentation, published at https://docs.dynart.net. It is Markdown
+only: the site is a [dpress](https://github.com/goph-R/dynart-dpress) install with the
+[Docs plugin](https://github.com/goph-R/dynart-dpress-docs), which reads this repository and
+renders it. There is no build step here, and no Sphinx any more - there is no `conf.py`, and
+`sphinx-build` is not how the site is made.
 
 ## Repository Structure
 
-The repository follows a Git submodules architecture where individual documentation sets are maintained in separate repositories:
+Each documentation set is its own repository, included as a git submodule:
 
-- **Root**: Main documentation site configuration ([conf.py](conf.py)) and index
-- **lisa-engine/**: Lisa Engine documentation (LibGDX-based retro platformer engine, base of NeonSignal and CoolFox)
-  - Source: https://github.com/DynartInteractive/docs-lisa-engine
-- **dos-game-engine/**: DOS Game Engine documentation (Pascal/Turbo Pascal framework)
-  - Source: git@github.com:DynartInteractive/docs-dos-game-engine.git
-- **legal/**: Legal documents (privacy policy, terms of use, house rules)
-  - Source: https://github.com/DynartInteractive/docs-legal
+- **Root**: [index.md](index.md), the top of the tree
+- **lisa-engine/**: Lisa Engine (LibGDX-based retro platformer engine, base of NeonSignal and
+  CoolFox) - https://github.com/DynartInteractive/docs-lisa-engine
+- **dos-game-engine/**: DOS Game Engine (Turbo Pascal framework) -
+  https://github.com/DynartInteractive/docs-dos-game-engine
+- **legal/**: privacy policy, terms of use, house rules -
+  https://github.com/DynartInteractive/docs-legal
 
-### Working with Submodules
+**Change submodule content in the submodule's own repository**, commit and push it there, and
+then commit the submodule's new commit in this repository (`git add <submodule>`) and push this
+one. The server checks out what this repository records: a submodule change that is not
+recorded here is not published.
 
-Initialize and update all submodules:
-```bash
-git submodule update --init --recursive
-```
+The submodule addresses are `https://` on purpose - the server has no GitHub key.
 
-Update submodules to their latest commits on main branch:
-```bash
-git submodule update --remote
-```
+## Publishing
 
-When making changes to submodule content, work directly in the respective submodule repository, not this parent repository.
+A push to this repository triggers a Jenkins job (its pipeline is the `Jenkinsfile` in
+https://github.com/DynartInteractive/docs.dynart.net). It runs `dpress docs:build` on the server,
+which pulls this repository and its submodules, and rebuilds every page.
 
-## Sphinx Configuration
+## What the build understands
 
-The Sphinx configuration ([conf.py](conf.py)) is set up with:
+CommonMark, plus this subset of MyST:
 
-- **MyST Parser extensions enabled:**
-  - `attrs_inline`: Inline IDs (e.g., `## Title {#id}`)
-  - `attrs_block`: Block IDs (e.g., `{#id}\n## Title`)
-  - `linkify`: Auto-converts URLs to links
+- ```` ```{toctree} ```` with `:maxdepth:`, `:caption:`, `:hidden:` - defines the tree. A page is
+  published only if a `toctree` reaches it from the root `index.md`, so files like this one and
+  `README.md` never are. Entries are paths relative to the file, without `.md`.
+- Admonitions: `note`, `tip`, `hint`, `important`, `seealso`, `attention`, `warning`, `caution`,
+  `danger`, `error`, `admonition`.
+- `{#id}` / `{#id .class}` / `{.class}` on the line before a heading, or at the end of it.
+- ``{ref}`id` `` - a link to the heading with that id.
+- Relative links to `.md` files, which become links to those pages.
+- Fenced code with a language is highlighted (`pascal` included); a fence with none is a plain box.
 
-- **Theme**: Read the Docs (`sphinx_rtd_theme`)
-- **Custom styling**: [_static/custom.css](_static/custom.css)
-- **Logo**: [_static/dynart-logo.svg](_static/dynart-logo.svg)
-- **Syntax highlighting**: Dracula theme (`pygments_style = 'dracula'`)
+Heading ids follow Sphinx's rule (`## VGA Graphics` is `#vga-graphics`), so old links keep
+working - keep headings stable when editing, since their ids are addresses people have saved.
 
-## Documentation Organization
-
-The main table of contents is defined in [index.md](index.md). Each submodule has its own `index.md` file that serves as the entry point for that documentation set, using Sphinx `toctree` directives to organize content.
-
-When adding new documentation sections, update the root [index.md](index.md) to include them in the site navigation.
+When adding a documentation set, add its `index` to the root [index.md](index.md) `toctree`.
